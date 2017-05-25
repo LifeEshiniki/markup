@@ -18,16 +18,14 @@
 </xsl:template>
 <xsl:template name="sliceword">
     <xsl:param name="str" select="''" />
-	
-    <xsl:if test="string-length($str) &gt; 0">
-	<word>
-	    <xsl:value-of select="substring-before('$str',' ')" />
-	<xsl:call-template name="sliceword">
-	    <xsl:with-param name="str" select="substring($str, 2)" />
-	</xsl:call-template>
-	
+	<xsl:if test="string-length($str) &gt; 0">
+    <word>
+	<xsl:value-of select="substring-before($str,' ')">
 	</word>
-    </xsl:if>
-	
+	<xsl:call-template name="sliceword">
+	    <xsl:with-param name="str" select="substring-after($str, ' ')" />
+	</xsl:call-template>
+	</xsl:if>
 </xsl:template>
+
 </xsl:stylesheet>
